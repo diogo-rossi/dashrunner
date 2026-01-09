@@ -1,13 +1,16 @@
 [project]
 name = "dashrunner"
 version = "0.0.0"
-description = ""
+description = "A module to run Dash apps as local apps"
 readme = "README.md"
 authors = [
-    { name = "Diogo Rossi", email = "rossi.diogo@gmail.com" }
+    { name = "Diogo Rossi", email = "rossi.diogo@gmail.com" },
 ]
 requires-python = ">=3.10"
-dependencies = []
+dependencies = [
+    "dash>=3.3.0",
+    "pywebview>=6.1",
+]
 
 [build-system]
 requires = ["hatchling"]
