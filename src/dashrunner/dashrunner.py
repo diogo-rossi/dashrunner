@@ -1,4 +1,5 @@
 from dash import Dash
+from plotly.graph_objects import Figure
 import webview
 import os
 import socket
@@ -83,3 +84,32 @@ def run(
         )
         webview.start(run_dash)
         os._exit(0)
+
+
+def show_plotly_fig(
+    figure: Figure,
+    port: int = 0,
+    debug: bool = False,
+    title: str = "Plotly figure",
+    maximized: bool = False,
+    screen: int | None = None,
+    matplotlib_layout: bool = False,
+) -> None:
+    from dash.dcc import Graph
+    from dash.html import Div
+
+    if matplotlib_layout:
+        figure = (
+            figure.update_layout(
+                template="simple_white",
+                plot_bgcolor="white",
+                height=500,
+                margin=dict(l=50, r=40, t=30, b=0),
+            )
+            .update_xaxes(mirror="allticks", ticks="inside", showgrid=True)
+            .update_yaxes(mirror="allticks", ticks="inside", showgrid=True)
+        )
+
+    app = Dash(__name__)
+    app.layout = Div([Graph(figure=figure)])
+    run(app, port, debug, title, maximized, screen)
