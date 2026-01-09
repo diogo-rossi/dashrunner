@@ -6,7 +6,7 @@ readme = "README.md"
 authors = [
     { name = "Diogo Rossi", email = "rossi.diogo@gmail.com" },
 ]
-requires-python = ">=3.10"
+requires-python = ">=3.12"
 dependencies = [
     "dash>=3.3.0",
     "pywebview>=6.1",
@@ -15,3 +15,8 @@ dependencies = [
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
+
+[dependency-groups]
+test = [
+    "numpy>=2.2.6",
+]
